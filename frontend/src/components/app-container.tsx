@@ -22,10 +22,13 @@ export const AppContainer: React.FC = () => {
     setError(null);
 
     try {
-      const response = await axios.post("https://gitdocs-tw63.onrender.com/generate-blog", {
-        repo_url: repoUrl,
-      });
-      
+      const response = await axios.post(
+        "https://gitdocsproject.onrender.com/generate-blog",
+        {
+          repo_url: repoUrl,
+        }
+      );
+
       if (response.data && response.data.blog) {
         setBlogContent(response.data.blog);
       } else {
@@ -33,8 +36,9 @@ export const AppContainer: React.FC = () => {
       }
     } catch (err: any) {
       console.error("Error generating blog:", err);
-      const errorMessage = err.response?.data?.error || 
-        "Failed to connect to the backend server. Is it running at https://gitdocs-tw63.onrender.com?";
+      const errorMessage =
+        err.response?.data?.error ||
+        "Failed to connect to the backend server. Is it running at https://gitdocsproject.onrender.com?";
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -54,7 +58,7 @@ export const AppContainer: React.FC = () => {
 
     return (
       <div className="max-w-5xl mx-auto space-y-10">
-        <motion.div 
+        <motion.div
           className="bg-github-card/60 backdrop-blur-lg border border-github-border/40 rounded-2xl shadow-xl p-8 overflow-hidden relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +70,9 @@ export const AppContainer: React.FC = () => {
               <div className="bg-github-accent/20 p-2 rounded-lg">
                 <Globe className="h-6 w-6 text-github-accent" />
               </div>
-              <h2 className="text-xl font-semibold text-white">Generate Documentation from Repository</h2>
+              <h2 className="text-xl font-semibold text-white">
+                Generate Documentation from Repository
+              </h2>
             </div>
             <RepoForm onSubmit={handleGenerateBlog} isLoading={loading} />
           </div>
@@ -74,7 +80,7 @@ export const AppContainer: React.FC = () => {
 
         <AnimatePresence mode="wait">
           {loading ? (
-            <motion.div 
+            <motion.div
               key="loading"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -85,7 +91,7 @@ export const AppContainer: React.FC = () => {
               <LoadingView />
             </motion.div>
           ) : error ? (
-            <motion.div 
+            <motion.div
               key="error"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,7 +101,7 @@ export const AppContainer: React.FC = () => {
               <ErrorMessage message={error} />
             </motion.div>
           ) : blogContent ? (
-            <motion.div 
+            <motion.div
               key="content"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,7 +124,7 @@ export const AppContainer: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-github-dark via-github-darker to-black">
       <header className="border-b border-github-border/40 bg-github-darker/90 backdrop-blur-md py-4 px-6 sticky top-0 z-50 shadow-lg shadow-black/20">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <motion.div 
+          <motion.div
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -131,28 +137,36 @@ export const AppContainer: React.FC = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <motion.div 
+          <motion.div
             className="hidden md:flex items-center space-x-8"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <button 
-              onClick={() => handleNavigation("main")} 
-              className={`text-sm hover:text-github-accent transition-colors ${activeView === "main" ? "text-github-accent" : "text-github-muted"}`}
+            <button
+              onClick={() => handleNavigation("main")}
+              className={`text-sm hover:text-github-accent transition-colors ${
+                activeView === "main"
+                  ? "text-github-accent"
+                  : "text-github-muted"
+              }`}
             >
               Generator
             </button>
-            <button 
-              onClick={() => handleNavigation("docs")} 
-              className={`text-sm flex items-center gap-1 hover:text-github-accent transition-colors ${activeView === "docs" ? "text-github-accent" : "text-github-muted"}`}
+            <button
+              onClick={() => handleNavigation("docs")}
+              className={`text-sm flex items-center gap-1 hover:text-github-accent transition-colors ${
+                activeView === "docs"
+                  ? "text-github-accent"
+                  : "text-github-muted"
+              }`}
             >
               <BookOpen className="h-4 w-4" />
               Documentation
             </button>
-            <a 
-              href="https://github.com/AnishMane/GitDocs" 
-              target="_blank" 
+            <a
+              href="https://github.com/AnishMane/GitDocs"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-github-muted text-sm hover:text-github-accent transition-colors"
             >
@@ -162,17 +176,21 @@ export const AppContainer: React.FC = () => {
           </motion.div>
 
           {/* Mobile Menu Button */}
-          <motion.div 
+          <motion.div
             className="md:hidden"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-github-muted hover:text-github-accent transition-colors"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </motion.div>
         </div>
@@ -188,22 +206,30 @@ export const AppContainer: React.FC = () => {
               transition={{ duration: 0.2 }}
             >
               <div className="flex flex-col space-y-4">
-                <button 
-                  onClick={() => handleNavigation("main")} 
-                  className={`text-sm py-2 px-3 rounded-md ${activeView === "main" ? "bg-github-accent/20 text-github-accent" : "text-github-muted hover:bg-github-highlight/30"}`}
+                <button
+                  onClick={() => handleNavigation("main")}
+                  className={`text-sm py-2 px-3 rounded-md ${
+                    activeView === "main"
+                      ? "bg-github-accent/20 text-github-accent"
+                      : "text-github-muted hover:bg-github-highlight/30"
+                  }`}
                 >
                   Generator
                 </button>
-                <button 
-                  onClick={() => handleNavigation("docs")} 
-                  className={`text-sm py-2 px-3 rounded-md flex items-center gap-2 ${activeView === "docs" ? "bg-github-accent/20 text-github-accent" : "text-github-muted hover:bg-github-highlight/30"}`}
+                <button
+                  onClick={() => handleNavigation("docs")}
+                  className={`text-sm py-2 px-3 rounded-md flex items-center gap-2 ${
+                    activeView === "docs"
+                      ? "bg-github-accent/20 text-github-accent"
+                      : "text-github-muted hover:bg-github-highlight/30"
+                  }`}
                 >
                   <BookOpen className="h-4 w-4" />
                   Documentation
                 </button>
-                <a 
-                  href="https://github.com/AnishMane/GitDocs" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/AnishMane/GitDocs"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm py-2 px-3 rounded-md flex items-center gap-2 text-github-muted hover:bg-github-highlight/30"
                 >
@@ -232,7 +258,7 @@ export const AppContainer: React.FC = () => {
 
       <footer className="border-t border-github-border/40 bg-github-darker/90 backdrop-blur-md py-6 px-6 shadow-inner">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center sm:justify-between text-sm">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -240,14 +266,14 @@ export const AppContainer: React.FC = () => {
           >
             © {new Date().getFullYear()} GitDocs
           </motion.div>
-          <motion.div 
+          <motion.div
             className="flex items-center gap-6 mt-3 sm:mt-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <a 
-              href="https://github.com/AnishMane/GitDocs" 
+            <a
+              href="https://github.com/AnishMane/GitDocs"
               target="_blank"
               rel="noopener noreferrer"
               className="text-github-muted/80 hover:text-github-accent transition-colors flex items-center gap-2 group"

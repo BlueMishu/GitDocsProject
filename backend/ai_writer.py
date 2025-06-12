@@ -155,7 +155,7 @@ def generate_blog(metadata):
             headers = {
                 "Authorization": f"Bearer {API_KEY}",
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://gitdocs-tw63.onrender.com",
+                "HTTP-Referer": "https://gitdocsproject.onrender.com",
                 "X-Title": "GitDocs"
             }
             
