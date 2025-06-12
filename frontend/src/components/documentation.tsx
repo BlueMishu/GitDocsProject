@@ -223,7 +223,7 @@ export const Documentation: React.FC = () => {
           </h3>
           <CodeBlock
             code={
-              "git clone https://github.com/AnishMane/GitDocs.git\ncd GitDocs"
+              "git clone https://github.com/BlueMishu/GitDocsProject.git\ncd GitDocs"
             }
             id="clone-repo"
           />
@@ -338,7 +338,7 @@ export const Documentation: React.FC = () => {
 
           <h4 className="text-white font-medium mb-2">Request Body:</h4>
           <CodeBlock
-            code={'{\n  "repo_url": "https://github.com/AnishMane/GitDocs"\n}'}
+            code={'{\n  "repo_url": "https://github.com/BlueMishu/GitDocsProject"\n}'}
             language="json"
             id="request-body"
           />
@@ -410,7 +410,7 @@ export const Documentation: React.FC = () => {
           size="lg"
           className="border-github-border/50 hover:bg-github-highlight/50 hover:border-github-accent/50 transition-all duration-200 px-6 py-2 gap-2"
           onClick={() =>
-            window.open("https://github.com/AnishMane/GitDocs", "_blank")
+            window.open("https://github.com/BlueMishu/GitDocsProject", "_blank")
           }
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">

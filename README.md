@@ -33,12 +33,14 @@
 ### Installation
 
 1. Clone the repository:
+
    ```bash
-   git clone https://github.com/AnishMane/GitDocs.git
+   git clone https://github.com/BlueMishu/GitDocsProject.git
    cd GitDocs
    ```
 
 2. Set up the backend:
+
    ```bash
    cd backend
    python -m venv venv
@@ -47,6 +49,7 @@
    ```
 
 3. Create a `.env` file in the backend directory with your OpenRouter API key:
+
    ```
    OPENROUTER_API_KEY=your_api_key_here
    ```
@@ -60,10 +63,12 @@
 ### Running the Application
 
 1. Start the backend server:
+
    ```bash
     cd backend
     python -u app.py
    ```
+
    The backend will be available at http://localhost:5000
 
 2. In a new terminal, start the frontend:
@@ -78,11 +83,13 @@
 GitDocs operates in three main stages:
 
 1. **Repository Analysis**:
+
    - Clones the target repository
    - Identifies technology stack based on file extensions and dependencies
    - Extracts README content and representative code snippets
 
 2. **Content Generation**:
+
    - Sends repository metadata to AI model via OpenRouter API
    - Structures blog with sections for introduction, features, technical details, and code examples
    - Falls back to template-based generation if API is unavailable
@@ -100,13 +107,15 @@ POST /generate-blog
 ```
 
 **Request Body**:
+
 ```json
 {
-  "repo_url": "https://github.com/AnishMane/GitDocs"
+  "repo_url": "https://github.com/BlueMishu/GitDocsProject"
 }
 ```
 
 **Response**:
+
 ```json
 {
   "blog": "# Generated Markdown Content..."
